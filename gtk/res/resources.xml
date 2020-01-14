@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/icons">
-    <file preprocess="to-pixdata" compressed="true">texterIcon.png</file>
-    <file preprocess="to-pixdata" compressed="true">128.png</file>
-    <file preprocess="to-pixdata" compressed="true">64.png</file>
-    <file preprocess="to-pixdata" compressed="true">32.png</file>
+  <gresource>
+    <file compressed="true">appIcon/48.svg</file>
+  </gresource>
+  <gresource>
+    <file compressed="true">texterIcon/128.svg</file>
+    <file compressed="true">texterIcon/64.svg</file>
+    <file compressed="true">texterIcon/48.svg</file>
+    <file compressed="true">texterIcon/32.svg</file>
   </gresource>
 </gresources>
