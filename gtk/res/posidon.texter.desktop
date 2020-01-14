@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Texter
+GenericName=Code editor
+Comment=Used to write code
+Categories=Utility;Education;GNOME;GTK;Code;Programming;
+Path=/usr/share/posidon.texter
+Exec=java -jar texter.jar
+Icon=application-default-icon
+Terminal=false
+Type=Application
+MimeType=text/html;text/xml;
+Keywords=Code;Programming;Texter;Text;
