@@ -1,4 +1,4 @@
-# texterInstaller
+# texterInstaller executables
 Installers for texter
 
 
