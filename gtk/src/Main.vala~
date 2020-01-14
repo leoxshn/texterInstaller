@@ -1,5 +1,4 @@
 
-[CCode(cheader_filename = "resources.c")]
 public class Main : Gtk.Application {
 	public Main () {
 		Object (
@@ -10,17 +9,12 @@ public class Main : Gtk.Application {
 	
 	protected override void activate () {
 		var window = new Gtk.ApplicationWindow(this);
-		Gdk.set_program_class("texter-installer");
 		window.title = "texter installer";
 		window.window_position = Gtk.WindowPosition.CENTER;
 		window.set_default_size (320, 260);
 		window.resizable = false;
 		window.destroy.connect (Gtk.main_quit);
-		var icons = new List<Gdk.Pixbuf>();
-		icons.append(new Gdk.Pixbuf.from_resource ("/icons/128.png"));
-		icons.append(new Gdk.Pixbuf.from_resource ("/icons/64.png"));
-		icons.append(new Gdk.Pixbuf.from_resource ("/icons/32.png"));
-		window.set_icon_list(icons);
+		window.icon = new Gdk.Pixbuf.from_resource ("/icons/texterIcon.png");
 		
 		var cssProvider = new Gtk.CssProvider();
 		cssProvider.load_from_data("
@@ -50,10 +44,6 @@ public class Main : Gtk.Application {
 		box.valign = Gtk.Align.CENTER;
 		window.add(box);
 		
-		var bigIcon = new Gtk.Image.from_resource("/icons/texterIcon.png");
-		bigIcon.margin_bottom = 12;
-		box.add(bigIcon);
-		
 		var progress = new Gtk.ProgressBar ();
 		box.add(progress);
 		
@@ -65,7 +55,6 @@ public class Main : Gtk.Application {
 		installBtn.clicked.connect (() => {
 			progress.show();
 			installBtn.hide();
-			progress
 			print("bananas");
 		});
 		box.add(installBtn);
