@@ -3,7 +3,7 @@ public class Main : Gtk.Application {
 
 	public const string installScript = 
 	"#! bin/bash
-wudo rm /usr/share/posidon.texter/texter.jar
+sudo rm /usr/share/posidon.texter/texter.jar
 sudo wget https://leoxshn.github.io/posidon-web/texter.jar -nv -P /usr/share/posidon.texter
 sudo cp /tmp/tmpTexterIcon128.png -T /usr/share/icons/hicolor/128x128/apps/posidon.texter.png
 sudo cp /tmp/tmpTexterIcon64.png -T /usr/share/icons/hicolor/64x64/apps/posidon.texter.png
