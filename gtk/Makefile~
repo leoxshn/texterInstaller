@@ -16,5 +16,5 @@ clean:
 	rm src/resources.c $(out)
 
 commit:
-	git add *
-	git commit
+    git add *
+    git commit

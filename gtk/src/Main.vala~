@@ -4,7 +4,7 @@ public class Main : Gtk.Application {
 	public const string installScript = 
 	"#! bin/bash
 sudo rm /usr/share/posidon.texter/texter.jar
-sudo wget https://posidon.io/texter/texter.jar -nv -P /usr/share/posidon.texter
+sudo wget https://leoxshn.github.io/posidon-web/texter.jar -nv -P /usr/share/posidon.texter
 sudo cp /tmp/tmpTexterIcon128.png -T /usr/share/icons/hicolor/128x128/apps/posidon.texter.png
 sudo cp /tmp/tmpTexterIcon64.png -T /usr/share/icons/hicolor/64x64/apps/posidon.texter.png
 sudo cp /tmp/tmpTexterIcon48.png -T /usr/share/icons/hicolor/48x48/apps/posidon.texter.png
@@ -29,17 +29,6 @@ sudo echo \"Keywords=Code;Programming;Texter;Text;\" >> /usr/share/applications/
 sudo gtk-update-icon-cache --force /usr/share/icons/hicolor
 sudo update-desktop-database /usr/share/applications";
 
-	public const string uninstallScript = 
-	"#! bin/bash
-sudo rm -rf /usr/share/posidon.texter
-sudo rm /usr/share/icons/hicolor/128x128/apps/posidon.texter.png
-sudo rm /usr/share/icons/hicolor/64x64/apps/posidon.texter.png
-sudo rm /usr/share/icons/hicolor/48x48/apps/posidon.texter.png
-sudo rm /usr/share/icons/hicolor/32x32/apps/posidon.texter.png
-sudo rm /usr/share/applications/posidon.texter.desktop
-sudo gtk-update-icon-cache --force /usr/share/icons/hicolor
-sudo update-desktop-database /usr/share/applications";
-
 	public Main () {
 		Object (
 			application_id: "posidon.texter.installer",
@@ -60,7 +49,7 @@ sudo update-desktop-database /usr/share/applications";
 		catch (Error e) {}
 		
 		var cssProvider = new Gtk.CssProvider();
-		cssProvider.load_from_data(".btn {
+		cssProvider.load_from_data(".install-btn {
 			padding-top: 8px;
 			padding-bottom: 8px;
 			padding-left: 22px;
@@ -77,19 +66,18 @@ sudo update-desktop-database /usr/share/applications";
 		bigIcon.margin_bottom = 12;
 		box.add(bigIcon);
 		
-		var label = new Gtk.Label ("Loading...");
+		var label = new Gtk.Label ("Done!");
 		box.add(label);
 		
 		var installBtn = new Gtk.Button.with_label("Install");
-		var uninstallBtn = new Gtk.Button.with_label("Uninstall");
 		installBtn.get_style_context().add_class("suggested-action");
-		installBtn.get_style_context().add_class("btn");
+		installBtn.get_style_context().add_class("install-btn");
 		installBtn.halign = Gtk.Align.CENTER;
 		installBtn.valign = Gtk.Align.CENTER;
 		installBtn.clicked.connect (() => {
+			label.label = "Loading...";
 			label.show();
 			installBtn.hide();
-			uninstallBtn.hide();
 			try {
 				FileStream stream = FileStream.open("/tmp/tmpTexterInstallScript.sh", "w");
 				stream.puts (installScript);
@@ -107,32 +95,12 @@ sudo update-desktop-database /usr/share/applications";
 		});
 		box.add(installBtn);
 		
-		uninstallBtn.get_style_context().add_class("destructive-action");
-		uninstallBtn.get_style_context().add_class("btn");
-		uninstallBtn.halign = Gtk.Align.CENTER;
-		uninstallBtn.valign = Gtk.Align.CENTER;
-		uninstallBtn.clicked.connect (() => {
-			label.show();
-			uninstallBtn.hide();
-			installBtn.hide();
-			try {
-				FileStream stream = FileStream.open("/tmp/tmpTexterUninstallScript.sh", "w");
-				stream.puts (uninstallScript);
-				stream.flush();
-				Process.spawn_command_line_sync("pkexec sudo sh /tmp/tmpTexterUninstallScript.sh");
-				Process.spawn_command_line_sync("rm /tmp/tmpTexterUninstallScript.sh");
-				label.label = "Done!";
-			} catch (Error e) {
-				label.label = "error: " + e.message;
-			}
-		});
-		box.add(uninstallBtn);
-		
 		window.show_all();
 		label.hide();
 	}
 	
 	public static int main (string[] args) {
-		return new Main().run(args);
+		var main = new Main ();
+		return main.run(args);
 	}
 }
