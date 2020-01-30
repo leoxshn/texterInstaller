@@ -9,10 +9,12 @@ sudo cp /tmp/tmpTexterIcon128.png -T /usr/share/icons/hicolor/128x128/apps/posid
 sudo cp /tmp/tmpTexterIcon64.png -T /usr/share/icons/hicolor/64x64/apps/posidon.texter.png
 sudo cp /tmp/tmpTexterIcon48.png -T /usr/share/icons/hicolor/48x48/apps/posidon.texter.png
 sudo cp /tmp/tmpTexterIcon32.png -T /usr/share/icons/hicolor/32x32/apps/posidon.texter.png
+sudo cp /tmp/tmpTexterIcon16.png -T /usr/share/icons/hicolor/16x16/apps/posidon.texter.png
 sudo rm /tmp/tmpTexterIcon128.png
 sudo rm /tmp/tmpTexterIcon64.png
 sudo rm /tmp/tmpTexterIcon48.png
 sudo rm /tmp/tmpTexterIcon32.png
+sudo rm /tmp/tmpTexterIcon16.png
 sudo echo \"[Desktop Entry]\" > /usr/share/applications/posidon.texter.desktop
 sudo echo \"Version=1.0\" >> /usr/share/applications/posidon.texter.desktop
 sudo echo \"Name=Texter\" >> /usr/share/applications/posidon.texter.desktop
@@ -36,6 +38,7 @@ sudo rm /usr/share/icons/hicolor/128x128/apps/posidon.texter.png
 sudo rm /usr/share/icons/hicolor/64x64/apps/posidon.texter.png
 sudo rm /usr/share/icons/hicolor/48x48/apps/posidon.texter.png
 sudo rm /usr/share/icons/hicolor/32x32/apps/posidon.texter.png
+sudo rm /usr/share/icons/hicolor/16x16/apps/posidon.texter.png
 sudo rm /usr/share/applications/posidon.texter.desktop
 sudo gtk-update-icon-cache --force /usr/share/icons/hicolor
 sudo update-desktop-database /usr/share/applications";
@@ -98,6 +101,7 @@ sudo update-desktop-database /usr/share/applications";
 				new Gdk.Pixbuf.from_resource ("/texterIcon/64.svg").save ("/tmp/tmpTexterIcon64.png", "png");
 				new Gdk.Pixbuf.from_resource ("/texterIcon/48.svg").save ("/tmp/tmpTexterIcon48.png", "png");
 				new Gdk.Pixbuf.from_resource ("/texterIcon/32.svg").save ("/tmp/tmpTexterIcon32.png", "png");
+				new Gdk.Pixbuf.from_resource ("/texterIcon/16.svg").save ("/tmp/tmpTexterIcon16.png", "png");
 				Process.spawn_command_line_sync("pkexec sudo sh /tmp/tmpTexterInstallScript.sh");
 				Process.spawn_command_line_sync("rm /tmp/tmpTexterInstallScript.sh");
 				label.label = "Done!";

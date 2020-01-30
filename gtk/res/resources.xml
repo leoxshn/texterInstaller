@@ -8,5 +8,6 @@
     <file compressed="true">texterIcon/64.svg</file>
     <file compressed="true">texterIcon/48.svg</file>
     <file compressed="true">texterIcon/32.svg</file>
+    <file compressed="true">texterIcon/16.svg</file>
   </gresource>
 </gresources>
